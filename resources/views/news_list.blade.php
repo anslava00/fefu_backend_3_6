@@ -5,13 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        @foreach ($news_list as $news)
+        @foreach ($NewsList as $news)
             <h1>{{ $news->title }}</h1>
             <p>{{ $news->text }}</p>
             <p>{{ $news->published_at }}</p>
         @endforeach
 
 
-        {{ $news_list->links() }}
+        {{ $NewsList->links() }}
     </body>
 </html>
