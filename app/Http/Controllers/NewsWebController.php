@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Page;
+use App\Models\News;
 use Illuminate\Http\Request;
 
-class PageWebController extends Controller
+class NewsWebController extends Controller
 {
     public function index(Request $request) {
-        $pageList = Page::query()->paginate(5);
-        return view('pageList', ['pageList' => $pageList]);
+        $newsList = News::query()->published()->paginate(5);
+        return view('newsList', ['newsList' => $newsList]);
     }
     /**
      * Handle the incoming request.
@@ -19,11 +19,10 @@ class PageWebController extends Controller
      */
     public function show(Request $request, string $slug)
     {
-        $page = Page::query()
-            ->where('slug', '=', $slug)
-            ->first();
-        if ($page === null)
+        $news = News::query()
+        ->published()->where('slug', '=', $slug)->first();
+        if ($news === null)
             abort(404);
-        return view('page', ['page' => $page]);
+        return view('news', ['news' => $news]);
     }
 }
