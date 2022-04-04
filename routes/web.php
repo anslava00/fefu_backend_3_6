@@ -3,7 +3,6 @@
 use App\Http\Controllers\PageWebController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsWebController;
-use App\Http\Controllers\PageWebController;
 
 
 /*

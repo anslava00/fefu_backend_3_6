@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 class PageWebController extends Controller
 {
     public function index(Request $request) {
-        $PageList = Page::query()->paginate(5);
-        return view('PageList', ['PageList' => $PageList]);
+        $pageList = Page::query()->paginate(5);
+        return view('pageList', ['pageList' => $pageList]);
     }
     /**
      * Handle the incoming request.

@@ -5,12 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        @foreach ($PageList as $page)
+        @foreach ($pageList as $page)
             <h1>{{ $page->title }}</h1>
             <p>{{ $page->text }}</p>
         @endforeach
 
 
-        {{ $PageList->links() }}
+        {{ $pageList->links() }}
     </body>
 </html>
