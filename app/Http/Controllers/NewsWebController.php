@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 class NewsWebController extends Controller
 {
     public function index(Request $request) {
-        $NewsList = News::query()->published()->paginate(5);
-        return view('NewsList', ['NewsList' => $NewsList]);
+        $newsList = News::query()->published()->paginate(5);
+        return view('newsList', ['newsList' => $newsList]);
     }
     /**
      * Handle the incoming request.
