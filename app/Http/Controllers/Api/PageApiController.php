@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 use App\Http\Resources\PageResources;
 use App\Models\Page;
 use App\OpenApi\Responses\ShowPagesResponse;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 use App\OpenApi\Responses\ListPagesResponse;
 use App\OpenApi\Responses\NotFoundResponse;
+use App\Http\Controllers\Controller;
 
 #[OpenApi\PathItem]
 class PageApiController extends Controller

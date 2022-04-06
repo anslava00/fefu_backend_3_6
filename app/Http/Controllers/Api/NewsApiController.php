@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Http\Resources\NewsResources;
 use App\Models\News;
 use App\OpenApi\Responses\ShowNewsResponse;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 use App\OpenApi\Responses\ListNewsResponse;
 use App\OpenApi\Responses\NotFoundResponse;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\NewsResources;
 
 #[OpenApi\PathItem]
 class NewsApiController extends Controller
