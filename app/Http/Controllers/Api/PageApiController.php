@@ -17,7 +17,7 @@ class PageApiController extends Controller
      *
      * @return \Illuminate\Http\Responseble
      */
-    #[OpenApi\Operation]
+    #[OpenApi\Operation(tags: ["page"])]
     #[OpenApi\Response(factory: ListPagesResponse::class, statusCode: 200)]
     public function index()
     {
@@ -30,7 +30,7 @@ class PageApiController extends Controller
      * @param string $slug
      * @return \Illuminate\Http\Responseble
      */
-    #[OpenApi\Operation]
+    #[OpenApi\Operation(tags: ["page"])]
     #[OpenApi\Response(factory: ShowPagesResponse::class, statusCode: 200)]
     #[OpenApi\Response(factory: NotFoundResponse::class, statusCode: 404)]
     public function show(string $slug)

@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AppealFormRequest;
 use App\Sanitizers\PhoneSanitizer;
 
-class AppealController extends Controller
+class AppealWebController extends Controller
 {
     public function form(){
         return view('appeal', ['success' => session('success', false)]);

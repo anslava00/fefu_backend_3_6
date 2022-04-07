@@ -27,6 +27,14 @@ return [
                    'name' => 'news',
                    'description' => 'News',
                 ],
+                [
+                    'name' => 'page',
+                    'description' => 'Page',
+                 ],
+                [
+                'name' => 'appeal',
+                'description' => 'Appeal',
+                ],
 
             ],
 
