@@ -37,7 +37,7 @@ class AppealSubmitParameters extends ParametersFactory
                 ->name('message')
                 ->description('Message')
                 ->required(true)
-                ->schema(Schema::string()->maxLength(100))
+                ->schema(Schema::string()->maxLength(1000))
                 ->example("Message"), 
 
         ];
