@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
 class AppealFormRequest extends FormRequest
 {
@@ -31,9 +29,5 @@ class AppealFormRequest extends FormRequest
             'email' => ['nullable', 'email:rfc'],
             'message' => ['required','string','max:1000'],
         ];
-    }
-    protected function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(response()->json($validator->errors(), 422));
     }
 }
