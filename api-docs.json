@@ -294,23 +294,6 @@
                     }
                 }
             },
-            "Appeal": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "phone": {
-                        "type": "string"
-                    },
-                    "email": {
-                        "type": "string"
-                    },
-                    "message": {
-                        "type": "string"
-                    }
-                }
-            },
             "PaginatorLinks": {
                 "type": "object",
                 "properties": {
