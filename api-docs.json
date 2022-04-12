@@ -15,7 +15,7 @@
                 "tags": [
                     "appeal"
                 ],
-                "summary": "Display the specified resource.",
+                "summary": "Accepts post requests and writes to the DB .",
                 "parameters": [
                     {
                         "name": "name",
@@ -55,7 +55,7 @@
                         "required": true,
                         "schema": {
                             "type": "string",
-                            "maxLength": 100
+                            "maxLength": 1000
                         },
                         "example": "Message"
                     }
@@ -290,23 +290,6 @@
                     },
                     "published_at": {
                         "format": "date-time",
-                        "type": "string"
-                    }
-                }
-            },
-            "Appeal": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "phone": {
-                        "type": "string"
-                    },
-                    "email": {
-                        "type": "string"
-                    },
-                    "message": {
                         "type": "string"
                     }
                 }
