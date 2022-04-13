@@ -15,7 +15,7 @@ use App\Http\Requests\AppealApiRequest;
 class AppealApiController extends Controller
 {
     /**
-     * Accepts post requests and writes to the DB .
+     * Save appeal submitted data
      * @param AppealApiRequest
      * @return JsonResponse
      */

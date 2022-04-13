@@ -15,7 +15,7 @@
                 "tags": [
                     "appeal"
                 ],
-                "summary": "Accepts post requests and writes to the DB .",
+                "summary": "Save appeal submitted data",
                 "parameters": [
                     {
                         "name": "name",
