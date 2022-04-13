@@ -10,8 +10,71 @@
         }
     ],
     "paths": {
+        "\/api\/appeal": {
+            "post": {
+                "tags": [
+                    "appeal"
+                ],
+                "summary": "Save appeal submitted data",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 100
+                        },
+                        "example": "Slava user"
+                    },
+                    {
+                        "name": "phone",
+                        "in": "query",
+                        "description": "Phone",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "+79622201732"
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Email",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "slava@mail.ru"
+                    },
+                    {
+                        "name": "message",
+                        "in": "query",
+                        "description": "Message",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 1000
+                        },
+                        "example": "Message"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Empty Response"
+                    },
+                    "422": {
+                        "$ref": "#\/components\/responses\/ErrorValidation"
+                    }
+                }
+            }
+        },
         "\/api\/news": {
             "get": {
+                "tags": [
+                    "news"
+                ],
                 "summary": "Display a listing of the resource.",
                 "responses": {
                     "200": {
@@ -43,6 +106,9 @@
         },
         "\/api\/news\/{news}": {
             "get": {
+                "tags": [
+                    "news"
+                ],
                 "summary": "Display the specified resource.",
                 "parameters": [
                     {
@@ -78,6 +144,9 @@
         },
         "\/api\/pages": {
             "get": {
+                "tags": [
+                    "page"
+                ],
                 "summary": "Display a listing of the resource.",
                 "responses": {
                     "200": {
@@ -109,6 +178,9 @@
         },
         "\/api\/pages\/{page}": {
             "get": {
+                "tags": [
+                    "page"
+                ],
                 "summary": "Display the specified resource.",
                 "parameters": [
                     {
@@ -241,12 +313,52 @@
                     }
                 }
             }
+        },
+        "responses": {
+            "ErrorValidation": {
+                "description": "Validation errors",
+                "content": {
+                    "application\/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "The given data was invalid."
+                                },
+                                "errors": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "field": [
+                                            "Something is wrong with this field!"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "tags": [
         {
             "name": "news",
             "description": "News"
+        },
+        {
+            "name": "page",
+            "description": "Page"
+        },
+        {
+            "name": "appeal",
+            "description": "Appeal"
         }
     ]
 }

@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 use App\Http\Resources\PageResources;
 use App\Models\Page;
 use App\OpenApi\Responses\ShowPagesResponse;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 use App\OpenApi\Responses\ListPagesResponse;
 use App\OpenApi\Responses\NotFoundResponse;
+use App\Http\Controllers\Controller;
 
 #[OpenApi\PathItem]
 class PageApiController extends Controller
@@ -16,7 +17,7 @@ class PageApiController extends Controller
      *
      * @return \Illuminate\Http\Responseble
      */
-    #[OpenApi\Operation]
+    #[OpenApi\Operation(tags: ["page"])]
     #[OpenApi\Response(factory: ListPagesResponse::class, statusCode: 200)]
     public function index()
     {
@@ -29,7 +30,7 @@ class PageApiController extends Controller
      * @param string $slug
      * @return \Illuminate\Http\Responseble
      */
-    #[OpenApi\Operation]
+    #[OpenApi\Operation(tags: ["page"])]
     #[OpenApi\Response(factory: ShowPagesResponse::class, statusCode: 200)]
     #[OpenApi\Response(factory: NotFoundResponse::class, statusCode: 404)]
     public function show(string $slug)

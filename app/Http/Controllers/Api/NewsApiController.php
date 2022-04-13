@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Http\Resources\NewsResources;
 use App\Models\News;
 use App\OpenApi\Responses\ShowNewsResponse;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 use App\OpenApi\Responses\ListNewsResponse;
 use App\OpenApi\Responses\NotFoundResponse;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\NewsResources;
 
 #[OpenApi\PathItem]
 class NewsApiController extends Controller
@@ -17,7 +18,7 @@ class NewsApiController extends Controller
      *
      * @return \Illuminate\Http\Responseble
      */
-    #[OpenApi\Operation]
+    #[OpenApi\Operation(tags: ["news"])]
     #[OpenApi\Response(factory: ListNewsResponse::class, statusCode: 200)]
     public function index()
     {
@@ -30,7 +31,7 @@ class NewsApiController extends Controller
      * @param string $slug
      * @return \Illuminate\Http\Responseble
      */
-    #[OpenApi\Operation]
+    #[OpenApi\Operation(tags: ["news"])]
     #[OpenApi\Response(factory: ShowNewsResponse::class, statusCode: 200)]
     #[OpenApi\Response(factory: NotFoundResponse::class, statusCode: 404)]
     public function show(string $slug)
