@@ -25,7 +25,7 @@ class BaseLoginFormRequest extends FormRequest
     {
         return [
             'email' => ['required', 'email'],
-            'password' => ['required'],
+            'password' => ['required', 'min:1|max:255'],
         ];
     }
 }
