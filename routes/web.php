@@ -8,6 +8,7 @@ use App\Http\Controllers\Web\NewsWebController;
 use Illuminate\Support\Facades\Route;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +24,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/appeal', [AppealWebController::class, 'form'])->name('appeal.form');
 Route::post('/appeal', [AppealWebController::class, 'send'])->name('appeal.send');
 
@@ -37,6 +39,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/register', [AuthController::class, 'registerForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');
+
 
 Route::get('/pages', [PageWebController::class, 'index']);
 Route::get('/pages/{slug}', [PageWebController::class, 'show']);
