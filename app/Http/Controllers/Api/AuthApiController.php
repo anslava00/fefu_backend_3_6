@@ -38,11 +38,11 @@ class AuthApiController extends Controller
      */
     #[OpenApi\Operation(tags: ["auth"], method:'POST')]
     #[OpenApi\Response(factory: UserLogoutResponse::class, statusCode: 200)]
-    public function logout()
+    public function logout(Request $request)
     {
-        Auth::user()->tokens->each(function($token, $key) {
-        $token->delete();
-        });
+        
+        $user = $request->user();
+        $user->currentAccessToken()->delete();
 
         return response()->json('Successfully logged out');
     }
@@ -59,11 +59,7 @@ class AuthApiController extends Controller
     {
         $data = $request->validated();
 
-        $user = new User();
-        $user->name = $data['name'];
-        $user->email = $data['email'];
-        $user->password = Hash::make($data['password']);
-        $user->save();
+        $user = User::createFormRequest($data);
         $authToken = $user->createToken('authToken')->plainTextToken;
 
         return response()->json([
@@ -92,7 +88,7 @@ class AuthApiController extends Controller
                 ]
             ], 422);
         }
-        $user = User::where('email', $data['email'])->firstOrFail();
+        $user = Auth::user();
         $authToken = $user->createToken('authToken')->plainTextToken;
         return response()->json([
             'access_token' => $authToken,
