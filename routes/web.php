@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\Web\AppealWebController;
+use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\PageWebController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Web\ProfileController;
 use App\Http\Controllers\Web\NewsWebController;
+use Illuminate\Support\Facades\Route;
+
 
 
 /*
@@ -21,8 +24,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/appeal', [AppealWebController::class, 'form'])->name('appeal.form');
 Route::post('/appeal', [AppealWebController::class, 'send'])->name('appeal.send');
+
+Route::get('/profile', action:[ProfileController::class, 'show'])
+    ->name('profile')
+    ->middleware('auth');
+
+
+Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/register', [AuthController::class, 'registerForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.post');
+
 
 Route::get('/pages', [PageWebController::class, 'index']);
 Route::get('/pages/{slug}', [PageWebController::class, 'show']);
