@@ -9,6 +9,14 @@
         <h1>
             Profile
         </h1>
+        <div>
+            <h3>OAuth info:</h3>
+            <h4>GitHub:</h4>
+            <label>
+                <b>Last login date: </b>{{$user['github_logged_in_at'] ?? 'Never'}}<br/>
+                <b>Registration date: </b>{{$user['github_registered_at'] ?? 'Never'}}
+            </label>
+        </div>
         <form action="{{ route('logout') }}" method="post">
             @csrf
             <button type="submit">Logout</button>

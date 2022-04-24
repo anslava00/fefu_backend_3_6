@@ -5,6 +5,7 @@ use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\PageWebController;
 use App\Http\Controllers\Web\ProfileController;
 use App\Http\Controllers\Web\NewsWebController;
+use App\Http\Controllers\Web\OAuthController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -24,6 +25,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::prefix('/oauth')->group(function () {
+    Route::get('/{provider}/redirect', [OAuthController::class, 'redirectToService'])->name('oauth.redirect');
+    Route::get('/{provider}/login', [OAuthController::class, 'login'])->name('oauth.login');
+});
 
 Route::get('/appeal', [AppealWebController::class, 'form'])->name('appeal.form');
 Route::post('/appeal', [AppealWebController::class, 'send'])->name('appeal.send');

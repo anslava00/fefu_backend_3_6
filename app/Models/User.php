@@ -22,6 +22,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'github_id',
+        'github_logged_in_at',
+        'github_registered_at',
     ];
 
     /**
@@ -32,6 +35,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'github_id',
     ];
 
     /**
@@ -41,6 +45,8 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'github_logged_in_at' => 'datetime',
+        'github_registered_at' => 'datetime',
     ];
 
     public static function createFormRequest(array $request) : self {
