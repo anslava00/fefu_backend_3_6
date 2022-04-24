@@ -34,8 +34,21 @@ return [
     'github' => [
         'client_id' => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        // 'redirect' => route('oauth.redirect', ['provider' => 'github']),
-        'redirect' => 'http://localhost/oauth/github/login',
+        'redirect' => env('GITHUB_REDIRECT_URI'),
         'scopes' => ['read:user']
+    ],
+
+    'vkontakte' => [    
+        'client_id' => env('VKONTAKTE_CLIENT_ID'),  
+        'client_secret' => env('VKONTAKTE_CLIENT_SECRET'),  
+        'redirect' => env('VKONTAKTE_REDIRECT_URI'),
+        'scopes' => ['read:user']
+    ],
+
+    'discord' => [    
+        'client_id' => env('DISCORD_CLIENT_ID'),  
+        'client_secret' => env('DISCORD_CLIENT_SECRET'),  
+        'redirect' => env('DISCORD_REDIRECT_URI'),
+        
     ],
 ];

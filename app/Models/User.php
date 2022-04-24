@@ -25,6 +25,12 @@ class User extends Authenticatable
         'github_id',
         'github_logged_in_at',
         'github_registered_at',
+        'vkontakte_id',
+        'vkontakte_logged_in_at',
+        'vkontakte_registered_at',
+        'discord_id',
+        'discord_logged_in_at',
+        'discord_registered_at',
     ];
 
     /**
@@ -36,6 +42,8 @@ class User extends Authenticatable
         'password',
         'remember_token',
         'github_id',
+        'vkontakte_id',
+        'discord_id',
     ];
 
     /**
@@ -47,6 +55,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'github_logged_in_at' => 'datetime',
         'github_registered_at' => 'datetime',
+        'vkontakte_logged_in_at' => 'datetime',
+        'vkontakte_registered_at' => 'datetime',
+        'discord_logged_in_at' => 'datetime',
+        'discord_registered_at' => 'datetime',
     ];
 
     public static function createFormRequest(array $request) : self {

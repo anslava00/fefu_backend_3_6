@@ -17,6 +17,22 @@
                 <b>Registration date: </b>{{$user['github_registered_at'] ?? 'Never'}}
             </label>
         </div>
+        <div>
+            <h3>OAuth info:</h3>
+            <h4>VK:</h4>
+            <label>
+                <b>Last login date: </b>{{$user['vkontakte_logged_in_at'] ?? 'Never'}}<br/>
+                <b>Registration date: </b>{{$user['vkontakte_registered_at'] ?? 'Never'}}
+            </label>
+        </div>
+        <div>
+            <h3>OAuth info:</h3>
+            <h4>discord:</h4>
+            <label>
+                <b>Last login date: </b>{{$user['discord_logged_in_at'] ?? 'Never'}}<br/>
+                <b>Registration date: </b>{{$user['discord_registered_at'] ?? 'Never'}}
+            </label>
+        </div>
         <form action="{{ route('logout') }}" method="post">
             @csrf
             <button type="submit">Logout</button>

@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Auth;
 
 class OAuthController extends Controller
 {
-    private const ALLOWED_PROVIDERS = ['github'];
+    private const ALLOWED_PROVIDERS = [
+        'github',
+        'vkontakte',
+        'discord'
+    ];
 
     private function getValidatedProvider(string $provider): string
     {
