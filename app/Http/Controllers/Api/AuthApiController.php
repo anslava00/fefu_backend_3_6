@@ -59,7 +59,15 @@ class AuthApiController extends Controller
     {
         $data = $request->validated();
 
-        $user = User::createFormRequest($data);
+        $user = User::query()
+        ->where('email', $data['email'])
+        ->first();
+
+        if ($user) {
+            $user->save();
+        } else {
+            $user = User::createFormRequest($data);
+        }
         $authToken = $user->createToken('authToken')->plainTextToken;
 
         return response()->json([
@@ -89,6 +97,8 @@ class AuthApiController extends Controller
             ], 422);
         }
         $user = Auth::user();
+        $user->app_logged_in_at = Carbon::now();
+        $user->save();
         $authToken = $user->createToken('authToken')->plainTextToken;
         return response()->json([
             'access_token' => $authToken,

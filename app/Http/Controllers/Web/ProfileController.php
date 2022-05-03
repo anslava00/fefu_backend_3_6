@@ -11,6 +11,6 @@ class ProfileController extends Controller
 {
     public function show(Request $request)
     {
-        return view('profile', ['user' => (new UserResource(Auth::user()))->toArray($request )]);
+        return view('profile', ['user' => (new UserResource(Auth::user()))->toArray($request)]);
     }
 }

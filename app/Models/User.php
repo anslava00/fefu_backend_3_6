@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -44,6 +45,8 @@ class User extends Authenticatable
         'github_id',
         'vkontakte_id',
         'discord_id',
+        'app_logged_in_at',
+        'app_registered_at',
     ];
 
     /**
@@ -59,6 +62,8 @@ class User extends Authenticatable
         'vkontakte_registered_at' => 'datetime',
         'discord_logged_in_at' => 'datetime',
         'discord_registered_at' => 'datetime',
+        'app_logged_in_at' => 'datetime',
+        'app_registered_at' => 'datetime',
     ];
 
     public static function createFormRequest(array $request) : self {
@@ -66,7 +71,11 @@ class User extends Authenticatable
         $user->name = $request['name'];
         $user->email = $request['email'];
         $user->password = Hash::make($request['password']);
+        $user->app_logged_in_at = Carbon::now();
+        $user->app_registered_at = Carbon::now();
+        
         $user->save();
+        
 
         return $user;
     }

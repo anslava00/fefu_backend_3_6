@@ -18,7 +18,6 @@
             </label>
         </div>
         <div>
-            <h3>OAuth info:</h3>
             <h4>VK:</h4>
             <label>
                 <b>Last login date: </b>{{$user['vkontakte_logged_in_at'] ?? 'Never'}}<br/>
@@ -26,7 +25,6 @@
             </label>
         </div>
         <div>
-            <h3>OAuth info:</h3>
             <h4>discord:</h4>
             <label>
                 <b>Last login date: </b>{{$user['discord_logged_in_at'] ?? 'Never'}}<br/>
