@@ -15,6 +15,10 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
+        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+            \SocialiteProviders\Discord\DiscordExtendSocialite::class.'@handle',
+            \SocialiteProviders\VKontakte\VKontakteExtendSocialite::class.'@handle',
+        ],
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],

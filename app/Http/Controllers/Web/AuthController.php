@@ -9,11 +9,11 @@ use function redirect;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BaseLoginFormRequest;
-use Auth;
 use App\Http\Requests\BaseRegisterFormRequest;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Hash;
-use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Hash;   
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -33,7 +33,9 @@ class AuthController extends Controller
 
         if (Auth::attempt($data, true)){
             $request->session()->regenerate();
-
+            $user = Auth::user();
+            $user->app_logged_in_at = Carbon::now();
+            $user->save();
             return redirect(route('profile'));
         }
 
@@ -56,13 +58,16 @@ class AuthController extends Controller
     {
         $data = $request->validated();
 
-        $user = new User();
-        $user->name = $data['name'];
-        $user->email = $data['email'];
-        $user->password = Hash::make($data['password']);
-        
-        $user->save();
+        $user = User::query()
+        ->where('email', $data['email'])
+        ->first();
 
+        if ($user) {
+            $user = User::changeFromRequest($user, $data);
+        } else {
+            $user = User::createFromRequest($data);
+        }
+        
         Auth::login($user);
         $request->session()->regenerate();
 
