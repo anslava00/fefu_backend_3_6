@@ -66,7 +66,15 @@ class User extends Authenticatable
         'app_registered_at' => 'datetime',
     ];
 
-    public static function createFormRequest(array $request) : self {
+    public static function changeFromRequest(User $user, array $data) {
+        $user->password = Hash::make($data['password']);
+        $user->app_logged_in_at = Carbon::now();
+        $user->app_registered_at = Carbon::now();
+        $user->save();
+        return $user;
+    }
+
+    public static function createFromRequest(array $request) : self {
         $user = new self();
         $user->name = $request['name'];
         $user->email = $request['email'];

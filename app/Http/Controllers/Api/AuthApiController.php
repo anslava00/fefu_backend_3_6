@@ -64,7 +64,7 @@ class AuthApiController extends Controller
         ->first();
 
         if ($user) {
-            $user->save();
+            $user = User::changeFromRequest($user, $data);
         } else {
             $user = User::createFormRequest($data);
         }
