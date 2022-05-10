@@ -109,11 +109,6 @@
                 "summary": "Save appeal submitted data",
                 "parameters": [
                     {
-                        "name": "token",
-                        "in": "cookie",
-                        "required": true
-                    },
-                    {
                         "name": "name",
                         "in": "query",
                         "description": "Name",
@@ -166,6 +161,72 @@
                     },
                     "422": {
                         "$ref": "#\/components\/responses\/ErrorValidation"
+                    }
+                }
+            }
+        },
+        "\/api\/catalog": {
+            "get": {
+                "tags": [
+                    "catalog"
+                ],
+                "summary": "Display a listing of the resource.",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#\/components\/schemas\/ProductCategory"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/catalog\/{catalog}": {
+            "get": {
+                "tags": [
+                    "catalog"
+                ],
+                "summary": "Display the specified resource.",
+                "parameters": [
+                    {
+                        "name": "catalog",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#\/components\/schemas\/ProductCategory"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
                     }
                 }
             }
@@ -454,6 +515,20 @@
                     }
                 }
             },
+            "ProductCategory": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "parent_id": {
+                        "type": "string"
+                    }
+                }
+            },
             "PaginatorLinks": {
                 "type": "object",
                 "properties": {
@@ -530,38 +605,6 @@
                     }
                 }
             }
-        },
-        "responses": {
-            "ErrorValidation": {
-                "description": "Validation errors",
-                "content": {
-                    "application\/json": {
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "message": {
-                                    "type": "string",
-                                    "example": "The given data was invalid."
-                                },
-                                "errors": {
-                                    "type": "object",
-                                    "additionalProperties": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "example": {
-                                        "field": [
-                                            "Something is wrong with this field!"
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
         }
     },
     "tags": [
@@ -580,6 +623,10 @@
         {
             "name": "auth",
             "description": "Auth"
+        },
+        {
+            "name": "catalog",
+            "description": "Catalog"
         }
     ]
 }

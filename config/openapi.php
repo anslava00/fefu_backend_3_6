@@ -39,7 +39,10 @@ return [
                     'name' => 'auth',
                     'description' => 'Auth',
                 ],
-
+                [
+                    'name' => 'catalog',
+                    'description' => 'Catalog',
+                ],
             ],
 
             'security' => [
