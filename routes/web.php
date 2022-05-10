@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Web\AppealWebController;
 use App\Http\Controllers\Web\AuthController;
+use App\Http\Controllers\Web\CatalogController;
 use App\Http\Controllers\Web\PageWebController;
 use App\Http\Controllers\Web\ProfileController;
 use App\Http\Controllers\Web\NewsWebController;
@@ -24,6 +25,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/catalog/{slug?}', [CatalogController::class, 'index'])->name('catalog');
 
 Route::prefix('/oauth')->group(function () {
     Route::get('/{provider}/redirect', [OAuthController::class, 'redirectToService'])->name('oauth.redirect');
