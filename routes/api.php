@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\NewsApiController;
 use App\Http\Controllers\Api\PageApiController;
 use App\Http\Controllers\Api\AppealApiController;
 use App\Http\Controllers\Api\AuthApiController;
+use App\Http\Controllers\Api\CatalogApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,10 +24,15 @@ Route::middleware('auth:sanctum')->group( function () {
     Route::post('logout', [AuthApiController::class, 'logout']);
 });
 
+
 Route::post('login', [AuthApiController::class, 'login']);
 Route::post('register', [AuthApiController::class, 'register']);
 
 
+Route::apiResource('catalog', CatalogApiController::class)->only([
+    'index',
+    'show',
+]);
 
 Route::apiResource('appeal', AppealApiController::class)->only([
     'store',
