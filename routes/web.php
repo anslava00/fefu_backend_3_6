@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Web\ProductWebController;
 use App\Http\Controllers\Web\AppealWebController;
 use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\CatalogController;
@@ -27,6 +28,7 @@ Route::get('/', function () {
 });
 
 Route::get('/catalog/{slug?}', [CatalogController::class, 'index'])->name('catalog');
+Route::get('/catalog/product/{slug}', [ProductWebController::class, 'index'])->name('product');
 
 Route::prefix('/oauth')->group(function () {
     Route::get('/{provider}/redirect', [OAuthController::class, 'redirectToService'])->name('oauth.redirect');

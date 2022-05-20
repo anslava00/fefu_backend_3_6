@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\ProductAttributeType;
 use App\Models\News;
 use App\Models\ProductCategory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -21,6 +22,9 @@ class DatabaseSeeder extends Seeder
             PageSeeder::class,
             NewsSeeder::class,
             ProductCategorySeeder::class,
+            ProductAttributeSeeder::class,
+            ProductSeeder::class,
+            ProductAttributeValueSeeder::class,
         ]);
     }
 }
