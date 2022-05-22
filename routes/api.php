@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\PageApiController;
 use App\Http\Controllers\Api\AppealApiController;
 use App\Http\Controllers\Api\AuthApiController;
 use App\Http\Controllers\Api\CatalogApiController;
+use App\Http\Controllers\Api\ProductApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,10 @@ Route::middleware('auth:sanctum')->group( function () {
     Route::post('logout', [AuthApiController::class, 'logout']);
 });
 
+Route::prefix('catalog')->group(function () {
+    Route::get('product/list', [ProductApiController::class, 'index']);
+    Route::get('product/details', [ProductApiController::class, 'show']);
+});
 
 Route::post('login', [AuthApiController::class, 'login']);
 Route::post('register', [AuthApiController::class, 'register']);

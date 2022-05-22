@@ -38,7 +38,7 @@ class ProductCategory extends Model
         $categoryIds = [];
 
         if ($categories === null){
-            throw new Exception('error category');
+            throw new Exception('no categories');
         }
 
         $collectCategoryIds = function (ProductCategory $category) use (&$categoryIds, &$collectCategoryIds) {
