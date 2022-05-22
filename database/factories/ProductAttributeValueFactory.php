@@ -15,21 +15,6 @@ use App\Enums\ProductAttributeType;
 class ProductAttributeValueFactory extends Factory
 {
     /** @var Product[]|\Illuminate\Database\Eloquent\Collection */
-    private $products;
-    /** @var ProductAttribute[]*/
-    private $attributeByCategoryId;
-    private $attributes;
-    public function __construct($count = null, ?Collection $states = null, ?Collection $has = null, ?Collection $for = null, ?Collection $afterMaking = null, ?Collection $afterCreating = null, ?Collection $connection = null)
-    {
-        parent::__construct($count, $states, $has, $for, $afterMaking, $afterCreating, $connection);
-        $this->products = Product::get();
-
-        $this->attributes = ProductAttribute::get();
-        $categoryIds = ProductAttribute::pluck('id')->all();
-        foreach ($categoryIds as $categoryId){
-            $this->attributeIdsByCategoryId[$categoryId] = $this->faker->randomElements($this->attributes);
-        }
-    }
     /**
      * Define the model's default state.
      *
@@ -53,7 +38,7 @@ class ProductAttributeValueFactory extends Factory
     {
         switch($attribute->type) {
             case ProductAttributeType::STRING:
-                $value = $this->faker->realTextBetween(20, 50);
+                $value = $this->faker->realTextBetween(10, 50);
                 break;
             case ProductAttributeType::NUMERIC:
                 $value = random_int(1, 1000);

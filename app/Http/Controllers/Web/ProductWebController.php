@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
 use App\Models\Product;
+use function view;
 
 class ProductWebController extends Controller
 {

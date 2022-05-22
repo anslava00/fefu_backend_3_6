@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Product extends Model
 {
     use HasFactory, Sluggable;
-    protected $dates = ['published_at'];
 
     public function sluggable(): array
     {
