@@ -36,7 +36,7 @@ class ProductCategory extends Model
     public static function getTreeProductsBuilder(Collection $categories): Builder
     {
         $categoryIds = [];
-        $categories = null;
+
         if ($categories === null){
             throw new Exception('error category');
         }
