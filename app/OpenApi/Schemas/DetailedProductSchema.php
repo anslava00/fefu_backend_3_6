@@ -18,7 +18,7 @@ class DetailedProductSchema extends SchemaFactory implements Reusable
      */
     public function build(): SchemaContract
     {
-        return Schema::object('Product')
+        return Schema::object('ProductAtributeValue')
             ->properties(
                 Schema::string('name')->default(null),
                 Schema::string('description')->default(null),

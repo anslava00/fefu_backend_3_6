@@ -75,7 +75,7 @@
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#\/components\/schemas\/ProductCategory"
+                                                "$ref": "#\/components\/schemas\/Product"
                                             }
                                         },
                                         "links": {
@@ -120,7 +120,7 @@
                 "summary": "Returning a product resource by the requested slug",
                 "parameters": [
                     {
-                        "name": "category_slug",
+                        "name": "product_slug",
                         "in": "query",
                         "required": false,
                         "schema": {
@@ -139,7 +139,7 @@
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#\/components\/schemas\/Product"
+                                                "$ref": "#\/components\/schemas\/ProductAtributeValue"
                                             }
                                         }
                                     }
@@ -629,13 +629,12 @@
                     "slug": {
                         "type": "string"
                     },
-                    "price": {
-                        "format": "double",
-                        "type": "number"
+                    "parent_id": {
+                        "type": "string"
                     }
                 }
             },
-            "Product": {
+            "ProductAtributeValue": {
                 "type": "object",
                 "properties": {
                     "name": {
@@ -680,6 +679,21 @@
                     "next": {
                         "type": "string",
                         "nullable": true
+                    }
+                }
+            },
+            "Product": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "format": "double",
+                        "type": "number"
                     }
                 }
             },

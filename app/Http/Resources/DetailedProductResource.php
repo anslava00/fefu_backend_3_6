@@ -7,7 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /**
  * @mixin Product
  */
-class ProductResources extends JsonResource
+class DetailedProductResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

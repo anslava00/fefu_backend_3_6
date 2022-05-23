@@ -6,7 +6,7 @@ use GoldSpecDigital\ObjectOrientedOAS\Objects\Parameter;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Schema as ObjectsSchema;
 use Vyuldashev\LaravelOpenApi\Factories\ParametersFactory;
 
-class ProductParameters extends ParametersFactory {
+class ProductsListParameters extends ParametersFactory {
     /**
      * @return Parameter[]
      */

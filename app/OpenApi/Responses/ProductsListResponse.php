@@ -17,7 +17,7 @@ class ProductsListResponse extends ResponseFactory
         return Response::ok()->description('Successful response')->content(
             MediaType::json()->schema(
                 ObjectsSchema::object()->properties(
-                    ObjectsSchema::array('data')->items(ListProductSchema ::ref()),
+                    ObjectsSchema::array('data')->items(ListProductSchema::ref()),
                     PaginatorLinksSchema::ref('links'),
                     PaginatorMetaSchema::ref('meta'),
                 )

@@ -18,7 +18,7 @@ class ListProductSchema  extends SchemaFactory implements Reusable
      */
     public function build(): SchemaContract
     {
-        return Schema::object('ProductCategory')
+        return Schema::object('Product')
             ->properties(
                 Schema::string('name')->default(null),
                 Schema::string('slug')->default(null),
