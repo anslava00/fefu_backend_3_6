@@ -8,27 +8,21 @@ use GoldSpecDigital\ObjectOrientedOAS\Objects\AnyOf;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Not;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\OneOf;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Schema;
-use Vyuldashev\LaravelOpenApi\Factories\SchemaFactory;
 use Vyuldashev\LaravelOpenApi\Contracts\Reusable;
+use Vyuldashev\LaravelOpenApi\Factories\SchemaFactory;
 
-class ProductSchema extends SchemaFactory implements Reusable
+class ListProductSchema  extends SchemaFactory implements Reusable
 {
     /**
      * @return AllOf|OneOf|AnyOf|Not|Schema
      */
     public function build(): SchemaContract
     {
-        return Schema::object('Product')
+        return Schema::object('ProductCategory')
             ->properties(
                 Schema::string('name')->default(null),
-                Schema::string('description')->default(null),
-                Schema::string('price')->default(null),
-                Schema::array('characteristics')->items(
-                    Schema::object()->properties(
-                        Schema::string('name')->nullable(null),
-                        Schema::string('value')->nullable(null),
-                    )
-                )
+                Schema::string('slug')->default(null),
+                Schema::number('price')->format('double'),
             );
     }
 }

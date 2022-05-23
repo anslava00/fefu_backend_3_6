@@ -54,6 +54,16 @@
                     "catalog"
                 ],
                 "summary": "Returning a list of products by slug.",
+                "parameters": [
+                    {
+                        "name": "category_slug",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",
@@ -108,6 +118,16 @@
                     "catalog"
                 ],
                 "summary": "Returning a product resource by the requested slug",
+                "parameters": [
+                    {
+                        "name": "category_slug",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",
@@ -582,45 +602,6 @@
                     }
                 }
             },
-            "Product": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": "string"
-                    },
-                    "price": {
-                        "type": "string"
-                    },
-                    "characteristics": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "name": {
-                                    "type": "string"
-                                },
-                                "value": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "ProductAttributeValue": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "value": {
-                        "type": "string"
-                    }
-                }
-            },
             "News": {
                 "type": "object",
                 "properties": {
@@ -648,8 +629,38 @@
                     "slug": {
                         "type": "string"
                     },
-                    "parent_id": {
+                    "price": {
+                        "format": "double",
+                        "type": "number"
+                    }
+                }
+            },
+            "Product": {
+                "type": "object",
+                "properties": {
+                    "name": {
                         "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "characteristics": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "value": {
+                                    "type": "string"
+                                }
+                            }
+                        }
                     }
                 }
             },

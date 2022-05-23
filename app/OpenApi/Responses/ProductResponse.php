@@ -2,8 +2,7 @@
 
 namespace App\OpenApi\Responses;
 
-use App\OpenApi\Schemas\ProductAttributeValueSchema;
-use App\OpenApi\Schemas\ProductSchema;
+use App\OpenApi\Schemas\DetailedProductSchema;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Response;
 use Vyuldashev\LaravelOpenApi\Factories\ResponseFactory;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\MediaType;
@@ -16,7 +15,7 @@ class ProductResponse extends ResponseFactory
         return Response::ok()->description('Successful response')->content(
             MediaType::json()->schema(
                 ObjectsSchema::object()->properties(
-                    ObjectsSchema::array('data')->items(ProductSchema::ref()),
+                    ObjectsSchema::array('data')->items(DetailedProductSchema::ref()),
                 )
             )
         );

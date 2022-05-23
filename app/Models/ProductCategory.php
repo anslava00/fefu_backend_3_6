@@ -37,7 +37,7 @@ class ProductCategory extends Model
     {
         $categoryIds = [];
 
-        if ($categories === null){
+        if ($categories->isEmpty()){
             throw new Exception('no categories');
         }
 
