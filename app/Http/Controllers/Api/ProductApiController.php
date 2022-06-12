@@ -16,6 +16,8 @@ use App\Models\Product;
 use App\OpenApi\Responses\ErrorCatalogResponse;
 use App\OpenApi\Responses\ProductResponse;
 use App\OpenApi\Responses\NotFoundResponse;
+use App\Http\Requests\CatalogApiRequest;
+use App\Http\Filters\ProductFilter;
 
 #[OpenApi\PathItem]
 class ProductApiController extends Controller
@@ -29,8 +31,10 @@ class ProductApiController extends Controller
     #[OpenApi\Response(factory: ProductsListResponse::class, statusCode: 200)]
     #[OpenApi\Response(factory: ErrorCatalogResponse::class, statusCode: 422)]
     #[OpenApi\Parameters(factory: ProductsListParameters::class)]
-    public function index(Request $request) {
-        $slug = $request->query('category_slug');
+    public function index(CatalogApiRequest $request) {
+        $requestData = $request->validated();;
+        $slug = $requestData['category_slug'];
+
         $query = ProductCategory::query()->with('children', 'products');
 
         if ($slug === null) {
@@ -42,9 +46,7 @@ class ProductApiController extends Controller
         $categories = $query->get();
 
         try{
-            $products = ProductCategory::getTreeProductsBuilder($categories)
-                ->orderBy('id')
-                ->paginate();
+            $products = ProductCategory::getTreeProductsBuilder($categories);
         }catch(Exception $exception) {
             return response()->json([
                 'message' => 'Error',
@@ -52,7 +54,23 @@ class ProductApiController extends Controller
             ], 422);
         }
 
-        return ListProductResource::collection($products);
+        $appliedFilters = $requestData['filters'] ?? [];
+        ProductFilter::apply($products, $appliedFilters);
+
+        if (isset($requestData['search_query'])) {
+            $products->search($requestData['search_query']);
+        }
+
+        $sortMode = $requestData['sort_mode'] ?? null;
+        if ($sortMode === 'price_asc') {
+            $products->orderBy('price');
+        } else if ($sortMode === 'price_desc') {
+            $products->orderBy('price', 'desc');
+        }
+
+        return ListProductResource::collection(
+            $products->orderBy('products.id')->paginate()
+        );
     }
     /**
      * Returning a product resource by the requested slug

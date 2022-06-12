@@ -22,7 +22,7 @@ class CatalogController extends Controller
     {
         $requestData = $request->validated();
 
-        $query = ProductCategory::query()->with('children');
+        $query = ProductCategory::query()->with('children', 'products');
         
         if ($slug === null) {
             $query->where('parent_id');
