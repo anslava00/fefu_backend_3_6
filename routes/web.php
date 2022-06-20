@@ -8,6 +8,7 @@ use App\Http\Controllers\Web\PageWebController;
 use App\Http\Controllers\Web\ProfileController;
 use App\Http\Controllers\Web\NewsWebController;
 use App\Http\Controllers\Web\OAuthController;
+use App\Http\Controllers\Web\WebCartController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -26,6 +27,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/cart', WebCartController::class)
+    ->middleware('auth.optional');
 
 Route::get('/catalog/{slug?}', [CatalogController::class, 'index'])->name('catalog');
 Route::get('/catalog/product/{slug}', [ProductWebController::class, 'index'])->name('product');

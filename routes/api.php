@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ApiCartController;
 use App\Http\Controllers\Api\NewsApiController;
 use App\Http\Controllers\Api\PageApiController;
 use App\Http\Controllers\Api\AppealApiController;
@@ -24,6 +25,9 @@ Route::middleware('auth:sanctum')->group( function () {
     Route::get('user', [AuthApiController::class, 'user']);
     Route::post('logout', [AuthApiController::class, 'logout']);
 });
+
+Route::post('/cart/set_quantity', ApiCartController::class)
+    ->middleware('auth.optional');
 
 Route::prefix('catalog')->group(function () {
     Route::get('product/list', [ProductApiController::class, 'index']);
