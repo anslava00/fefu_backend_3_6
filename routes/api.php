@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\PageApiController;
 use App\Http\Controllers\Api\AppealApiController;
 use App\Http\Controllers\Api\AuthApiController;
 use App\Http\Controllers\Api\CatalogApiController;
+use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProductApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,7 @@ Route::middleware('auth:sanctum')->group( function () {
     Route::get('user', [AuthApiController::class, 'user']);
     Route::post('logout', [AuthApiController::class, 'logout']);
 });
+Route::post('/order/store', [ OrderController::class, 'store']);
 
 Route::post('/cart/set_quantity', ApiCartController::class)
     ->middleware('auth.optional');

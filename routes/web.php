@@ -9,6 +9,7 @@ use App\Http\Controllers\Web\ProfileController;
 use App\Http\Controllers\Web\NewsWebController;
 use App\Http\Controllers\Web\OAuthController;
 use App\Http\Controllers\Web\WebCartController;
+use App\Http\Controllers\Web\OrderController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -27,6 +28,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/checkout', [ OrderController::class, 'index'])
+    ->middleware('auth')
+    ->name('checkout.get');
+
+Route::post('/checkout', [ OrderController::class, 'store'])
+    ->middleware('auth')
+    ->name('checkout.post');
 
 Route::get('/cart', WebCartController::class)
     ->middleware('auth.optional');
